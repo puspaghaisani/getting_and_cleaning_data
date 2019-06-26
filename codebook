@@ -1,0 +1,32 @@
+The run_analysis.R script performs the data preparation
+
+Download the dataset
+Dataset downloaded and extracted under the folder called UCI HAR Dataset
+
+Variables:
+features_data <- features.txt : 561 rows, 2 columns 
+activity_labels <- activity_labels.txt : 6 rows, 2 columns 
+subject_test <- test/subject_test.txt : 2947 rows, 1 column 
+x_test <- test/X_test.txt : 2947 rows, 561 columns 
+y_test <- test/y_test.txt : 2947 rows, 1 columns 
+subject_train <- test/subject_train.txt : 7352 rows, 1 column 
+x_train <- test/X_train.txt : 7352 rows, 561 columns 
+y_train <- test/y_train.txt : 7352 rows, 1 columns 
+
+Merges train set and test set into one dataset
+x_bind (10299 rows, 561 columns) is created by merging x_train and x_test using rbind() function
+y_bind (10299 rows, 1 column) is created by merging y_train and y_test using rbind() function
+subject_bind (10299 rows, 1 column) is created by merging subject_train and subject_test using rbind() function
+merged_data (10299 rows, 563 column) is created by merging Subject, Y and X using cbind() function
+
+Extracts only the measurements on the mean and standard deviation for each measurement
+TidyData (10299 rows, 88 columns) is created by subsetting Merged_Data, selecting only columns: subject, code and the measurements on the mean and standard deviation (std) for each measurement
+
+Change labels dataset with descriptive variable names
+code column in TidyData renamed into activity
+All Acc in column’s name renamed into  Accelerometer
+All Gyro in column’s name renamed into  Gyroscope
+All BodyBody in column’s name enamed into Body
+All Mag in column’s name replaced by Magnitude
+All start with character t in column’s name enamed into Time
+All start with character f in column’s name enamed into Frequency
